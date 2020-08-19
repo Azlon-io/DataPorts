@@ -12,6 +12,7 @@ Here the different client versions can be found as well as an example project an
 	1. [Open visual studio](#open-visual-studio)
 	1. [Implement Client methods](#implement-client-methods)
 1. [Example application](#example-application)
+	1. [Sending data queries](#sending-data-queries)
 1. [Versioning](#versioning)
 
 
@@ -124,6 +125,12 @@ Find the next lines in the file and fill in a value for dataportName, deviceId a
     <add key="sharedAccesKey" value="Replace_This" />
 
 After this you can start the tool and start sending files to other dataports.
+
+### Sending data queries
+With the example application it is also possible to send dataqueries to other DataPorts.
+A dataquery contains a key field and a value for this key field. For example: you can search on keyfield 'GTIN' and value '8713600053445'. When you send this query to a DataPort, the DataPort will receive this query and will be able to send and answer back to asking DataPort.
+
+**Note:** it's depending on the receiving DataPort if you will get an answer. The receiving DataPort must implement a search method for this to work. This is not mandatory for using DataPorts.
 
 ### Prerequisites
 - Windows computer with .Net Framework installed (mostly installed by default)
