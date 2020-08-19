@@ -115,7 +115,8 @@ The next methods should be implemented:
 	    }
 	} 
 	
-### DataPortQuery ####
+	
+### DataPortQuery
 The DataPort Client supports a way to ask questions to other dataports.
 To archieve this, a method on the DataPort Client can be called.
 The method is call SendDatportQuery and one of the parameters is the SearchIdentifier. The SearchIdentifier is an enumeration of field on which you can search.
