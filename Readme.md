@@ -11,6 +11,7 @@ Here the different client versions can be found as well as an example project an
 1. [NuGet Package](#nuget-package)
 	1. [Open visual studio](#open-visual-studio)
 	1. [Implement Client methods](#implement-client-methods)
+	1. [DataPortQuery](#dataportquery)
 1. [Example application](#example-application)
 	1. [Sending data queries](#sending-data-queries)
 1. [Versioning](#versioning)
@@ -113,6 +114,23 @@ The next methods should be implemented:
 	        }
 	    }
 	} 
+	
+###DataPortQuery
+The DataPort Client supports a way to ask questions to other dataports.
+To archieve this, a method on the DataPort Client can be called.
+The method is call SendDatportQuery and one of the parameters is the SearchIdentifier. The SearchIdentifier is an enumeration of field on which you can search.
+
+	dataportClient.SendDataportQuery(SearchIdentifiers.GTIN, "8713600053445", destinationDataPort);
+
+The enumeration is included in the DataPort Client package, so this can be expanded at future versions.
+At this moment the next options are present for the SearchIdentifier:
+
+- GTIN
+- GBIN
+- NAME
+
+The result of the DataPortQuery is fully dependant of the DataPort-implementation of the receiving party. 
+
 
 
 ## Example application
