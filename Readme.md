@@ -24,7 +24,6 @@ At the moment the next items are on the roadmap and are being developed:
 	- DataSend, DataReceive, QuerySend, QueryReceive, Addressbook
 -	DotNet Client 1.2. (C#)
 	- Query Validation
-	- 
 -	Self-service Portal 1.0
 	- Sign-up
 	- Register new DataPorts
