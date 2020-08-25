@@ -20,9 +20,15 @@ Here the different client versions can be found as well as an example project an
 ## Project Roadmap
 At the moment the next items are on the roadmap and are being developed:
 
--	Maven client (Java)
--	.Net Client (C#) 
--	Portal where you can manage your dataport(s)
+-	Maven client 1.1. (Java)
+	- DataSend, DataReceive, QuerySend, QueryReceive, Addressbook
+-	DotNet Client 1.2. (C#)
+	- Query Validation
+	- 
+-	Self-service Portal 1.0
+	- Sign-up
+	- Register new DataPorts
+	- Manage authorizations
 
 
 ## Getting started
