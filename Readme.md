@@ -161,6 +161,8 @@ A dataquery contains a key field and a value for this key field. For example: yo
 - deviceId and sharedAccesKey supplied by Azlon
 
 
+## Questions
+When there are any questions regarding DataPorts, you can send an email to dataports [at] azlon.com
 
 ## Versioning
 
