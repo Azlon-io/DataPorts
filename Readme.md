@@ -138,7 +138,6 @@ At this moment the next options are present for the SearchIdentifier:
 The result of the DataPortQuery is fully dependant of the DataPort-implementation of the receiving party. 
 
 
-
 ## Example application
 Download the ZIP from this repository and extract it into a folder on your computer.
 Locate the Dataport.exe.config file and open this with a texteditor (Notepad or Notepad++).
