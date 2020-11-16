@@ -153,7 +153,7 @@ After this you can start the tool and start sending files to other dataports.
 With the example application it is also possible to send dataqueries to other DataPorts.
 A dataquery contains a key field and a value for this key field. For example: you can search on keyfield 'GTIN' and value '8713600053445'. When you send this query to a DataPort, the DataPort will receive this query and will be able to send and answer back to asking DataPort.
 
-**Note:** it's depending on the receiving DataPort if you will get an answer. The receiving DataPort must implement a search method for this to work. This is not mandatory for using DataPorts.
+**Note:** it is depending on the receiving DataPort if you will get an answer. The receiving DataPort must implement a search method for this to work. This is not mandatory for using DataPorts.
 
 ### Prerequisites
 - Windows computer with .Net Framework installed (mostly installed by default)
