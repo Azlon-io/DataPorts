@@ -142,10 +142,12 @@ The result of the DataPortQuery is fully dependant of the DataPort-implementatio
 Download the ZIP from this repository and extract it into a folder on your computer.
 Locate the Dataport.exe.config file and open this with a texteditor (Notepad or Notepad++).
 Find the next lines in the file and fill in a value for dataportName, deviceId and sharedAccesKey.
+Make sure the line with "azlonSecret is present in the config too.
 
 	<add key="dataportName" value="Replace_This" />
     <add key="deviceId" value="Replace_This" /> 
     <add key="sharedAccesKey" value="Replace_This" />
+	<add key="azlonSecret" value="dAdg747-TRH=Ffd33422Sddfiidq" />
 
 After this you can start the tool and start sending files to other dataports.
 
