@@ -4,7 +4,6 @@ Here the different client versions can be found as well as an example project an
 
 
 ## Contents
-1. [Project Roadmap](#project-roadmap)
 1. [Getting started](#getting-started)
 	1. [Prerequisites](#prerequisites)
 2. [Request a DataPort address](#request-a-dataport-address)
@@ -16,18 +15,6 @@ Here the different client versions can be found as well as an example project an
 	1. [Sending data queries](#sending-data-queries)
 1. [Versioning](#versioning)
 
-
-## Project Roadmap
-At the moment the next items are on the roadmap and are being developed:
-
--	Maven client 1.1. (Java)
-	- DataSend, DataReceive, QuerySend, QueryReceive, Addressbook
--	DotNet Client 1.2. (C#)
-	- Query Validation
--	Self-service Portal 1.0
-	- Sign-up
-	- Register new DataPorts
-	- Manage authorizations
 
 
 ## Getting started
@@ -63,14 +50,28 @@ The next items are required to be able to use the NuGet Package.
 1. Now you are ready to Add the NuGet Package to your development project
 
 
+### Types of Messages ####
+
+There are multiple types of messages:
+
+1.	Notification - This is used to send data to another dataport
+1.	Request - This can be used to request data from another dataport (for example by GTIN or GBIN). This needs to be implemented at the receiving dataport.
+1.	Response - the answer to a request, contains a result and a datacontainer
+
+There are also 2 messages available which are not implemented yet, this will be done in a later version:
+1.	Confirmation - confirms if a message is succesfully delivered.
+1.	Subscribe - a message which can be used to subscribe on product updates (filtered by a list of parameters).
+
 #### Implement Client methods ####
 
 The next methods should be implemented:
 
 1.	Constructor to initialize the Client // Client() or Client(string deviceId, string sharedAccesKey)
-1.	Event to receive messages: OnMessageReceived()
 1.	Call method to start receiving: StartReceiving()
 1.	Call method to stop receiving: StopReceiving()
+1.	Event to receive messages: OnNotificationReceived()
+1.	Event to receive messages: OnRequestReceived()
+1.	Event to receive messages: OnResponseReceived()
 
 
 
@@ -92,11 +93,40 @@ The next methods should be implemented:
 	        public Form1 : Form()
 	        {
 	            dataportClient = new Client(ConfigurationManager.AppSettings["deviceId"], ConfigurationManager.AppSettings["sharedAccesKey"]);
-	            dataportClient.OnMessageReceived += DataportClient_OnMessageReceived;
+	            dataportClient.OnNotificationReceived += DataportClient_OnNotificationReceived;
+            	dataportClient.OnRequestReceived += DataportClient_OnRequestReceived;
 	            dataportClient.StartReceivingMessages();
 	        }
+
+			private void DataportClient_OnRequestReceived(object source, Request message)
+        	{	
+            	if(message.Query != null && message.Query.Parameters.FirstOrDefault(p => p.Name.ToLower() == "gtin") != null)
+	            {
+	                //lookup file on local system by gtin
 	
-	        private void DataportClient_OnMessageReceived(object source, DataPortMessage message)
+	                //send response
+	            }
+        	}
+
+			private void DataportClient_OnResponseReceived(object source, Response message)
+	        {
+	            if(message.DataDock != null)
+	            {
+	                WebClient wc = new WebClient();
+	
+	                try
+	                {
+	                    string fileName = Path.GetFileName(message.DataContainer.Uri.ToString());
+	                    wc.DownloadFile(new Uri(message.DataContainer.Uri.ToString()), $"{folder}{fileName}");
+	                    LogAction($"File received from: {message.Source.ToString()}, saved to disk as {fileName}");
+	
+	                }
+	                catch (Exception ex)
+	                { }
+	            }
+	        }
+	
+	        private void DataportClient_OnNotificationReceived(object source, DataPortMessage message)
 	        {
 	            if (message != null)
 	            {
@@ -126,7 +156,36 @@ The DataPort Client supports a way to ask questions to other dataports.
 To archieve this, a method on the DataPort Client can be called.
 The method is call SendDatportQuery and one of the parameters is the SearchIdentifier. The SearchIdentifier is an enumeration of field on which you can search.
 
-	dataportClient.SendDataportQuery(SearchIdentifiers.GTIN, "8713600053445", destinationDataPort);
+	private Request CreateSearchMessage()
+        {
+            Request dpMsg = new Request
+            {
+                Destination = new Guid((cbbDataPorts.SelectedItem as ListItem).Value.ToString()),
+                MessageIdentifier = new Guid(),
+                RequestId = new Guid(),
+                Source = new Guid(ConfigurationManager.AppSettings["deviceId"]),
+                DataDock = "ProductData",
+                Query = new Query()
+                {
+                    Format = new Format()
+                    {
+                        Name = "SF XML",
+                        Version = "1.0",
+                    },
+
+                    Parameters = new List<Azlon.Dataport.Model.Parameter>()
+                    {
+                        new Azlon.Dataport.Model.Parameter()
+                        {
+                            Name = cbbIdentifier.SelectedItem.ToString(),
+                            Value = tbIdentifier.Text,
+                            Version = "1.0"
+                        }
+                    }
+                }
+            };
+
+            return dpMsg;
 
 The enumeration is included in the DataPort Client package, so this can be expanded at future versions.
 At this moment the next options are present for the SearchIdentifier:
@@ -148,6 +207,8 @@ Make sure the line with "azlonSecret is present in the config too.
     <add key="deviceId" value="Replace_This" /> 
     <add key="sharedAccesKey" value="Replace_This" />
 	<add key="azlonSecret" value="dAdg747-TRH=Ffd33422Sddfiidq" />
+	<add key="useOriginalFileName" value="false" />
+    <add key="environment" value="Live" />
 
 After this you can start the tool and start sending files to other dataports.
 
