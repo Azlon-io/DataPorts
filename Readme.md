@@ -1,4 +1,4 @@
-This repository hosts documentation, demo applications and guidelines for implementing DataPorts. DataPorts facilitate the exchange of data between two parties.
+This repository hosts documentation, sample applications and guidelines for implementing DataPorts. DataPorts facilitate the exchange of data between two parties.
 
 # Getting started
 The best way to use DataPorts is to integrate the Azlon.DataPort.Client package into your own software.
