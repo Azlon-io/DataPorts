@@ -34,9 +34,12 @@ The CLI tool supports receiving files from a DataPort.
 A DeviceId and SharedAccessKey are provided by your contact person.
 
 ## Configuration
-Environment, Name, DeviceId, SharedAccessKey must be configured in the configuration file of the application:
+autoSaveLocation, Environment (Test|Live), Name, DeviceId, SharedAccessKey must be configured in the configuration file of the application:
 
 ```
+<appSettings>
+	<add key="autoSaveLocation" value="C:\Dataport_Downloads\" />
+</appSettings>
 <Dataport>
 	<add key="Environment" value="Test" />
 	<add key="Name" value="Test DataPort" />
