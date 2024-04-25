@@ -3,10 +3,10 @@ This repository hosts documentation, sample applications and guidelines for impl
 # Getting started
 The best way to use DataPorts is to integrate the Azlon.DataPort.Client package into your own software.
 
-Alternatively one of the sample applications can be downloaded and files can be send/received imediately.
+Alternatively one of the sample applications can be downloaded and files can be sent/received immediately.
 
 ## Azlon.DataPort.Client package
-The Azlon.DataPort.Client package is available for .Net and for Java and can integrated into your own software.
+The Azlon.DataPort.Client package is available for .Net and for Java and can be integrated into your own software.
 
 The .Net package can be downloaded from [here](https://github.com/orgs/Azlon-io/packages/nuget/package/Azlon.DataPort.Client) or [here](https://github.com/Azlon-io/DataPorts/tree/master/Development%20Toolkit%20DotNet%20(NuGet%20package))
 
