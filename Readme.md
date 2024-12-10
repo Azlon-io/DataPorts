@@ -36,7 +36,7 @@ A DeviceId and SharedAccessKey are provided by your contact person.
 ## Configuration
 The following configuration must be set in the configuration file of the application:
 - autoSaveLocation: Path where received files are stored
-- Environment: test|live
+- Environment: test|live **(case sensitive!)**
 - Name: Name of the DataPort
 - DeviceId: Unique DataPort identifier, supplied by your contact person
 - SharedAccessKey: Access key for the DataPort, supplied by your contact person
