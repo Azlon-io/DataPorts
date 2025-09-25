@@ -45,7 +45,7 @@ The following configuration must be set in the configuration file of the applica
 	<add key="autoSaveLocation" value="C:\Dataport_Downloads\" />
 </appSettings>
 <Dataport>
-	<add key="Environment" value="test" />
+	<add key="Environment" value="tst" />
 	<add key="Name" value="Test DataPort" />
 	<add key="DeviceId" value="???" />
 	<add key="SharedAccessKey" value="???" />
